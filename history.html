@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    history
+{% endblock %}
+
+{% block main %}
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Symbol</th>
+                <th>Shares</th>
+                <th>Price</th>
+                <th>Sale</th>
+                <th>Transacted</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for account in accounts %}
+            <tr>
+                <td>{{ account["symbol"] }}</td>
+                <td>{{ account["shares"] }}</td>
+                <td>${{ account["price"] }}</td>
+                <td>{{ account["type"] }}</td>
+                <td>{{ account["transacted"] }} </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

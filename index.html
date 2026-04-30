@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Home
+{% endblock %}
+{{ get_flashed_messages("bought") }}
+{% block main %}
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th >Symbol</th>
+                <th >Name</th>
+                <th >Shares</th>
+                <th >Price</th>
+                <th >Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for account in accounts %}
+            <tr>
+                <td>{{ account["symbol"] }}</td>
+                <td> {{ account["name"] }}</td>
+                <td>{{ account["number_of_shares"] }}</td>
+                <td>${{  account["price"] }}</td>
+                {%set total = account["number_of_shares"] * account["price"] %}
+                <td >$ {{ total | round(2)}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr>
+                <td class="border-0 fw-bold text-end" colspan="4" NAME="CASH">Cash</td>
+                <td >${{ balance }}</td>
+            </tr>
+        </tfoot>
+    </table>
+{% endblock %}
